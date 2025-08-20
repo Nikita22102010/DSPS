@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДСПС - Демократическая Свободная Партия Справедливости</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(circle, rgba(59,130,246,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">ДС</div>
+                <h1 class="text-xl font-bold text-gray-800">ДСПС</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition" data-page="home">Главная</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition" data-page="about">О партии</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition" data-page="news">Новости</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition" data-page="legislation">Законы</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition" data-page="statistics">Статистика</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition" data-page="faq">FAQ</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition" data-page="contacts">Контакты</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://forms.gle/k7gjMF3cHip4h19o8" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition inline-block">Вступить</a>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+                <a href="#" class="py-2 text-gray-700 border-b" data-page="home">Главная</a>
+                <a href="#" class="py-2 text-gray-700 border-b" data-page="about">О партии</a>
+                <a href="#" class="py-2 text-gray-700 border-b" data-page="news">Новости</a>
+                <a href="#" class="py-2 text-gray-700 border-b" data-page="legislation">Законы</a>
+                <a href="#" class="py-2 text-gray-700 border-b" data-page="statistics">Статистика</a>
+                <a href="#" class="py-2 text-gray-700 border-b" data-page="faq">FAQ</a>
+                <a href="#" class="py-2 text-gray-700 border-b" data-page="contacts">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <!-- Hero Section -->
+            <section class="hero-pattern">
+                <div class="container mx-auto px-4 py-20 md:py-32 flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Демократическая Свободная Партия Справедливости</h1>
+                        <p class="text-xl text-gray-600 mb-4">Мы строим будущее, основанное на принципах демократии, свободы и социальной справедливости для всех граждан.</p>
+                        <p class="text-lg font-medium text-blue-600 mb-8">Ни вашим, Ни нашим, Ни вообще кому либо, заебали</p>
+                        <div class="flex space-x-4">
+                            <a href="https://forms.gle/k7gjMF3cHip4h19o8" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md transition inline-block">Вступить в партию</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <div class="absolute -top-6 -left-6 w-32 h-32 bg-blue-100 rounded-lg"></div>
+                            <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-100 rounded-lg"></div>
+                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="ДСПС" class="relative z-10 rounded-lg shadow-xl w-full">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Values Section -->
+            <section class="bg-white py-20">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Наши основные ценности</h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-10">
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-democrat text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Демократия</h3>
+                            <p class="text-gray-600">Мы верим в власть народа, для народа и через народ. Прозрачность и подотчетность - наши принципы.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-balance-scale text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Справедливость</h3>
+                            <p class="text-gray-600">Равные возможности для всех, вне зависимости от происхождения, пола или социального статуса.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-hands-helping text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Солидарность</h3>
+                            <p class="text-gray-600">Сильное общество строится на взаимопомощи и поддержке тех, кто в ней нуждается.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- About Page -->
+        <div id="about-page" class="page">
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row items-center mb-16">
+                        <div class="md:w-1/2 mb-10 md:mb-0">
+                            <h1 class="text-4xl font-bold text-gray-800 mb-6">О нашей партии</h1>
+                            <p class="text-xl text-gray-600 mb-6">Демократическая Свободная Партия Справедливости (ДСПС) была основана в 2023 году группой активистов, объединенных идеями социальной справедливости, демократии и защиты прав человека.</p>
+                            <p class="text-xl text-gray-600">За годы нашей работы мы стали одной из ведущих политических сил, отстаивающих интересы простых граждан.</p>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="О партии" class="rounded-lg shadow-xl w-full max-w-md">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-10 mb-16">
+                        <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Наша миссия</h2>
+                        <p class="text-xl text-gray-600 text-center max-w-4xl mx-auto">Мы стремимся построить общество, где каждый человек имеет равные возможности для реализации своего потенциала, где права и свободы защищены, а экономическая система работает на благо всех граждан, а не узкой группы лиц.</p>
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">История партии</h2>
+                    
+                    <div class="relative">
+                        <!-- Timeline line -->
+                        <div class="hidden md:block absolute left-1/2 h-full w-1 bg-blue-200"></div>
+                        
+                        <!-- Timeline items -->
+                        <div class="space-y-16">
+                            <!-- Item 1 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-10 mb-6 md:mb-0 md:text-right">
+                                    <h3 class="text-2xl font-bold text-gray-800">Основание партии</h3>
+                                    <p class="text-gray-600">2023 год</p>
+                                    <p class="mt-2 text-gray-600">Группа активистов объединилась для создания новой политической силы, ориентированной на защиту демократических ценностей.</p>
+                                </div>
+                                <div class="hidden md:flex w-10 h-10 absolute left-1/2 transform -translate-x-1/2 bg-blue-600 rounded-full items-center justify-center text-white">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-10"></div>
+                            </div>
+                            
+                            <!-- Item 2 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-10"></div>
+                                <div class="hidden md:flex w-10 h-10 absolute left-1/2 transform -translate-x-1/2 bg-blue-600 rounded-full items-center justify-center text-white">
+                                    <i class="fas fa-vote-yea"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-10 mb-6 md:mb-0">
+                                    <h3 class="text-2xl font-bold text-gray-800">Первые выборы</h3>
+                                    <p class="text-gray-600">2024 год</p>
+                                    <p class="mt-2 text-gray-600">Партия впервые приняла участие в парламентских выборах, получив 5% голосов и 10 мест в законодательном органе.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Item 3 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-10 mb-6 md:mb-0 md:text-right">
+                                    <h3 class="text-2xl font-bold text-gray-800">Расширение влияния</h3>
+                                    <p class="text-gray-600">2024-2025 годы</p>
+                                    <p class="mt-2 text-gray-600">Партия создала особые привелегии для участников, значительно увеличив свою поддержку среди населения.</p>
+                                </div>
+                                <div class="hidden md:flex w-10 h-10 absolute left-1/2 transform -translate-x-1/2 bg-blue-600 rounded-full items-center justify-center text-white">
+                                    <i class="fas fa-expand"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-10"></div>
+                            </div>
+                            
+                            <!-- Item 4 -->
+                            <div class="relative flex flex-col md:flex-row items-center">
+                                <div class="md:w-1/2 md:pr-10"></div>
+                                <div class="hidden md:flex w-10 h-10 absolute left-1/2 transform -translate-x-1/2 bg-blue-600 rounded-full items-center justify-center text-white">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div class="md:w-1/2 md:pl-10 mb-6 md:mb-0">
+                                    <h3 class="text-2xl font-bold text-gray-800">Признание на международной арене</h3>
+                                    <p class="text-gray-600">2025 год</p>
+                                    <p class="mt-2 text-gray-600">ДСПС была признана одной из самых прогрессивных демократических партий в регионе 310-го кабинета по версии международных наблюдателей.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="py-20 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Руководство партии</h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-10">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQcbLMzceAjdNdobhqiubzQsAYFuauFy69iuZ5nI6sObF5f6WnRkgQ08_OLifP-FrFHld0i6arksySI1K8ukjmDeRluNdPlBKs8jWSt2g" alt="Лидер" class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">The Mr. Kartofel</h3>
+                                <p class="text-blue-600 mb-3">Лидер Партии</p>
+                                <p class="text-gray-600">Доктор костолом-невропатолог-гинеколог, бывший депутат.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                            <img src="https://memepedia.ru/wp-content/uploads/2020/03/gigachad-1.jpg" alt="Заместитель" class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Victor Bácsi Führer</h3>
+                                <p class="text-blue-600 mb-3">Вице-Лидер, Верховный Судья, Правая Рука Лидера</p>
+                                <p class="text-gray-600">Честный гражданин.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                            <img src="https://vlisi.com.ua/wp-content/uploads/2023/02/bilyj-gryb-foto-1.jpeg" alt="Секретарь" class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Irina Vlagyimirovna Brenyo</h3>
+                                <p class="text-blue-600 mb-3">Заместитель, Левая Рука Лидера</p>
+                                <p class="text-gray-600">Юрист, правозащитник, szem nélküli gomba, alma, légy, légyölő galóca.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- News Page -->
+        <div id="news-page" class="page">
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-4">
+                    <h1 class="text-4xl font-bold text-center text-gray-800 mb-16">Новости партии</h1>
+                    
+                    <div class="grid md:grid-cols-1 gap-8 mb-12">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                            <img src="https://images.unsplash.com/photo-1549923746-c502d488b3ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Новость" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <span class="text-sm text-blue-600">1 сентября 2025</span>
+                                <h3 class="text-xl font-bold mt-2 mb-3">Обновлённый сайт партии!</h3>
+                                <p class="text-gray-600">Представляем обновлённый сайт с современным дизайном и улучшенной навигацией для удобства пользователей.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+
+        <!-- Contacts Page -->
+        <div id="contacts-page" class="page">
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                            <h1 class="text-4xl font-bold text-gray-800 mb-6">Свяжитесь с нами</h1>
+                            <p class="text-xl text-gray-600 mb-8">Мы всегда открыты для диалога с гражданами, общественными организациями и средствами массовой информации.</p>
+                            
+                            <div class="space-y-6 mb-10">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-800">Верховная Рада</h3>
+                                        <p class="text-gray-600">Вторая школа, 310 кабинет, 2 парта от зада, ряд третий от окна</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <a href="https://www.youtube.com/@TheNikita2210/videos" target="_blank" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+
+        <!-- Legislation Page -->
+        <div id="legislation-page" class="page">
+			<section class="py-20 bg-white">
+				<div class="container mx-auto px-4">
+					<h1 class="text-4xl font-bold text-center text-gray-800 mb-16">Законы и статьи для граждан</h1>
+					
+					<div class="max-w-4xl mx-auto">
+						<h2 class="text-2xl font-bold text-gray-800 mb-6">Основные законы ДСПС</h2>
+						
+						<div class="grid gap-6">
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 1.</h3>
+								<h4 class="font-bold mb-2">Отстранение за неисполнение обязанностей</h4>
+								<p class="text-gray-700">Если назначенный на должность человек не выполняет свои обязанности, он немедленно лишается этой должности.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 2.</h3>
+								<h4 class="font-bold mb-2">Уважение и понимание к членам партии</h4>
+								<p class="text-gray-700">Каждый член партии обязан уважать других и относиться к ним с пониманием, вне зависимости от личных различий.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 3.</h3>
+								<h4 class="font-bold mb-2">Запрет радикального феминизма</h4>
+								<p class="text-gray-700">Идеология радикального феминизма запрещена в целях сохранения традиционных общественных ценностей.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 4.</h3>
+								<h4 class="font-bold mb-2">Поддержание порядка и развитие партии</h4>
+								<p class="text-gray-700">Все члены партии обязаны поддерживать порядок и вносить свой вклад в развитие партии.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 5.</h3>
+								<h4 class="font-bold mb-2">Запрет дискриминации и унижения</h4>
+								<p class="text-gray-700">Любые проявления дискриминации или унижения чести и достоинства запрещены.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 6.</h3>
+								<h4 class="font-bold mb-2">Обязательность решений большинства</h4>
+								<p class="text-gray-700">Решения, принимаемые большинством, обязательны для исполнения всеми членами партии.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 7.</h3>
+								<h4 class="font-bold mb-2">Свобода слова с ограничениями</h4>
+								<p class="text-gray-700">Свобода слова гарантируется, но не допускаются провокации, подстрекательства или клевета.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 8.</h3>
+								<h4 class="font-bold mb-2">Личное развитие в интересах общества</h4>
+								<p class="text-gray-700">Каждый обязан стремиться к личному развитию и достижению целей, соответствующих интересам общества.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 9.</h3>
+								<h4 class="font-bold mb-2">Наказание за коррупцию и злоупотребления</h4>
+								<p class="text-gray-700">Любые формы коррупции и злоупотребления властью строго наказываются.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 10.</h3>
+								<h4 class="font-bold mb-2">Справедливость и честность в деятельности</h4>
+								<p class="text-gray-700">Любая деятельность в партии должна основываться на справедливости и честности.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 11.</h3>
+								<h4 class="font-bold mb-2">Назначение руководящих должностей</h4>
+								<p class="text-gray-700">
+								The Mr. Kartofel - Лидер Партии.<br>
+								Victor Bácsi Führer - Правая Рука Лидера Партии, Верховный Судья.<br>
+								Ирина Владимирова - Левая Рука Лидера Партии.<br>
+								Ольга Вадимовна - Министр Обороны.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 12.</h3>
+								<h4 class="font-bold mb-2">Идеологические приветствия</h4>
+								<p class="text-gray-700">Бывше-Партейская зига, Гимн (он появится в ближайшее время), Сталин, Гитлер - приветствуются.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 13.</h3>
+								<h4 class="font-bold mb-2">Основные языки партии</h4>
+								<p class="text-gray-700">Основные языки: Русский, Немецкий, Венгерский, Английский, Украинский (последний из списка не приветствуется, но допускается).</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 14.</h3>
+								<h4 class="font-bold mb-2">Запрет списывания для посторонних</h4>
+								<p class="text-gray-700">Строго запрещено давать списывать тем, кто не в партии. Любая подобная схема будет расцениваться как коррупция и приведет к наказанию по статье №9.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 15.</h3>
+								<h4 class="font-bold mb-2">Наказание за оскорбления партии</h4>
+								<p class="text-gray-700">Оскорбления партии и/или её членов недопустимы и караются 50 отжиманиями.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 16.</h3>
+								<h4 class="font-bold mb-2">Защита прав, свобод и безопасности</h4>
+								<p class="text-gray-700">Члены партии обязаны защищать права и свободы граждан, обеспечивать безопасность и стабильность общества.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 17.</h3>
+								<h4 class="font-bold mb-2">Запрет пропаганды насилия, феминизма, ЛГБТ</h4>
+								<p class="text-gray-700">Пропаганда насилия, феминизма, ЛГБТ и т.п. строго запрещена во всех формах. Любое проявление «женской солидарности» считается феминизмом.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 18.</h3>
+								<h4 class="font-bold mb-2">Обязательная взаимопомощь</h4>
+								<p class="text-gray-700">Взаимопомощь и поддержка в трудных ситуациях обязательны вне зависимости от обстоятельств.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 19.</h3>
+								<h4 class="font-bold mb-2">Идеология партии</h4>
+								<p class="text-gray-700">По состоянию на 1 сентября 2025 года идеологией партии является популизм.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 20.</h3>
+								<h4 class="font-bold mb-2">Право на труд, образование и медпомощь</h4>
+								<p class="text-gray-700">Каждый имеет право на труд, образование и медицинскую помощь. Эти права должны предоставляться без дискриминации.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 21.</h3>
+								<h4 class="font-bold mb-2">Запрет насилия и дискриминации в партии</h4>
+								<p class="text-gray-700">Любое насилие или дискриминация в отношении однопартийцев строго запрещены, независимо от ситуации.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 22.</h3>
+								<h4 class="font-bold mb-2">Запрет определённых игр</h4>
+								<p class="text-gray-700">Игры такие как «Лось», «Девятка» и подобные строго запрещены.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 23.</h3>
+								<h4 class="font-bold mb-2">Разрешение споров голосованием</h4>
+								<p class="text-gray-700">Все внутренние споры решаются голосованием, если иное не определено решением Лидера Партии.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 24.</h3>
+								<h4 class="font-bold mb-2">Дисциплина на собраниях</h4>
+								<p class="text-gray-700">Члены партии обязаны соблюдать дисциплину на собраниях, не мешать ходу обсуждений и уважать порядок выступлений.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 25.</h3>
+								<h4 class="font-bold mb-2">Проверка кандидатов на лояльность</h4>
+								<p class="text-gray-700">Кандидаты на вступление в партию обязаны пройти проверку на лояльность и знание ключевых положений устава.</p>
+							</div>
+							
+							<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+								<h3 class="text-xl font-bold text-blue-600 mb-3">Статья 26.</h3>
+								<h4 class="font-bold mb-2">Удостоверение члена партии</h4>
+								<p class="text-gray-700">Все члены Партии обязаны иметь при себе удостоверение члена и предъявлять его по требованию компетентных органов Партии.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+
+        <!-- Statistics Page -->
+        <div id="statistics-page" class="page">
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-4">
+                    <h1 class="text-4xl font-bold text-center text-gray-800 mb-16">Статистика партии</h1>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                            <div class="text-5xl font-bold text-blue-600 mb-4">10</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Членов партии</h3>
+                            <p class="text-gray-600">Активных участников движения</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                            <div class="text-5xl font-bold text-blue-600 mb-4">26</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Законов принято</h3>
+                            <p class="text-gray-600">С момента основания партии</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                            <div class="text-5xl font-bold text-blue-600 mb-4">310</div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Кабинет</h3>
+                            <p class="text-gray-600">Главный штаб партии</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-8 mb-12">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Рост партии по месяцам</h2>
+                        <div class="h-64 bg-white rounded-lg shadow-sm p-4">
+                            <canvas id="growthChart"></canvas>
+                        </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const ctx = document.getElementById('growthChart').getContext('2d');
+                                const growthChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: ['Ноябрь 2023', 'Декабрь 2023', 'Февраль 2024', 'Июл 2024', 'Окт 2024', 'Апрель 2025'],
+                                        datasets: [{
+                                            label: 'Членов партии',
+                                            data: [3, 4, 6, 8, 9, 10],
+                                            borderColor: 'rgb(59, 130, 246)',
+                                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                            tension: 0.3,
+                                            fill: true,
+                                            pointBackgroundColor: 'rgb(59, 130, 246)',
+                                            pointRadius: 5,
+                                            pointHoverRadius: 7
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                ticks: {
+                                                    stepSize: 1
+                                                }
+                                            }
+                                        },
+                                        plugins: {
+                                            tooltip: {
+                                                callbacks: {
+                                                    label: function(context) {
+                                                        return `Членов: ${context.parsed.y}`;
+                                                    }
+                                                }
+                                            },
+                                            legend: {
+                                                display: false
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-1 gap-8">
+                        <div class="bg-gray-50 rounded-xl p-8">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">Последние вступления</h2>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Копыт Максим</h4>
+                                        <p class="text-sm text-gray-600">23 апреля 2025</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Огар Валентина</h4>
+                                        <p class="text-sm text-gray-600">23 апреля 2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FAQ Page -->
+        <div id="faq-page" class="page">
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-4">
+                    <h1 class="text-4xl font-bold text-center text-gray-800 mb-16">Часто задаваемые вопросы</h1>
+                    
+                    <div class="max-w-4xl mx-auto space-y-6">
+                        <div class="bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition">
+                            <h3 class="text-xl font-bold text-blue-600 mb-3">Как вступить в партию?</h3>
+                            <p class="text-gray-700">Для вступления в партию необходимо заполнить заявку по <a href="https://forms.gle/k7gjMF3cHip4h19o8" target="_blank" class="text-blue-600 hover:underline">ссылке</a>. После рассмотрения вашей заявки с вами свяжется представитель партии.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition">
+                            <h3 class="text-xl font-bold text-blue-600 mb-3">Какие требования к членам партии?</h3>
+                            <p class="text-gray-700">Основные требования: возраст от 14 лет, согласие с уставом и принципами партии, активная гражданская позиция.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition">
+                            <h3 class="text-xl font-bold text-blue-600 mb-3">Какие привилегии получают члены партии?</h3>
+                            <p class="text-gray-700">Члены партии получают гарантию защиты, возможность участвовать в разработке законопроектов, и поддержку со стороны партии.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition">
+                            <h3 class="text-xl font-bold text-blue-600 mb-3">Как часто проходят собрания партии?</h3>
+                            <p class="text-gray-700">Регулярные собрания проходят по мере необходимости в Верховной Раде.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition">
+                            <h3 class="text-xl font-bold text-blue-600 mb-3">Можно ли выйти из партии?</h3>
+                            <p class="text-gray-700">Да, выход из партии возможен в любое время путем подачи заявления. Однако мы рекомендуем обсудить причины выхода с руководством партии.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition">
+                            <h3 class="text-xl font-bold text-blue-600 mb-3">Как финансируется партия?</h3>
+                            <p class="text-gray-700">Партия существует на добровольные взносы членов партии. Все финансовые отчеты публикуются для членов партии при необходимости.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-10 mb-10">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">ДСПС</h3>
+                    <p class="text-gray-400">Демократическая Свободная Партия Справедливости — политическая сила, объединяющая граждан, которые верят в демократические ценности и социальную справедливость.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Навигация</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-page="home">Главная</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-page="about">О партии</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-page="news">Новости</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-page="legislation">Законы</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-page="statistics">Статистика</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-page="faq">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" data-page="contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Контакты</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>Верховная Рада</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Социальные сети</h3>
+                    <div>
+                        <a href="https://www.youtube.com/@TheNikita2210/videos" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Демократическая Свободная Партия Справедливости. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Page navigation
+        document.querySelectorAll('[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(`${pageId}-page`).classList.add('active');
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Set home page as active on initial load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('home-page').classList.add('active');
+        });
+    </script>
+</body>
+</html>
